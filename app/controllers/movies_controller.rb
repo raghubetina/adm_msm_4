@@ -3,10 +3,13 @@ class MoviesController < ApplicationController
 
   def index
     @q = Movie.ransack(params[:q])
-    @movies = @q.result(distinct: true).includes(:director).page(params[:page]).per(10)
+    @movies = @q.result(distinct: true).includes(:bookmarks, :director,
+                                                 :users).page(params[:page]).per(10)
   end
 
-  def show; end
+  def show
+    @bookmark = Bookmark.new
+  end
 
   def new
     @movie = Movie.new

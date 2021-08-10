@@ -9,5 +9,9 @@ class MovieResource < ApplicationResource
 
   belongs_to :director
 
+  has_many   :bookmarks
+
   # Indirect associations
+
+  many_to_many :users
 end
